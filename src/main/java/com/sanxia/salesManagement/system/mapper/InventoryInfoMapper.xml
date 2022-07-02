@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.InventoryInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.InventoryInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="purchase_price" property="purchasePrice" jdbcType="DECIMAL" />
+    <result column="purchase_total_price" property="purchaseTotalPrice" jdbcType="DECIMAL" />
+    <result column="sale_number" property="saleNumber" jdbcType="INTEGER" />
+    <result column="sale_total_price" property="saleTotalPrice" jdbcType="DECIMAL" />
+    <result column="profit" property="profit" jdbcType="DECIMAL" />
+    <result column="remaining_number" property="remainingNumber" jdbcType="INTEGER" />
+    <result column="take_time" property="takeTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, goods_name, purchase_price, purchase_total_price, sale_number, sale_total_price, 
+    profit, remaining_number, take_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from inventory_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from inventory_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.InventoryInfo" >
+    insert into inventory_info (id, goods_id, goods_name, 
+      purchase_price, purchase_total_price, sale_number, 
+      sale_total_price, profit, remaining_number, 
+      take_time)
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{purchasePrice,jdbcType=DECIMAL}, #{purchaseTotalPrice,jdbcType=DECIMAL}, #{saleNumber,jdbcType=INTEGER}, 
+      #{saleTotalPrice,jdbcType=DECIMAL}, #{profit,jdbcType=DECIMAL}, #{remainingNumber,jdbcType=INTEGER}, 
+      #{takeTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.InventoryInfo" >
+    insert into inventory_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price,
+      </if>
+      <if test="purchaseTotalPrice != null" >
+        purchase_total_price,
+      </if>
+      <if test="saleNumber != null" >
+        sale_number,
+      </if>
+      <if test="saleTotalPrice != null" >
+        sale_total_price,
+      </if>
+      <if test="profit != null" >
+        profit,
+      </if>
+      <if test="remainingNumber != null" >
+        remaining_number,
+      </if>
+      <if test="takeTime != null" >
+        take_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null" >
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseTotalPrice != null" >
+        #{purchaseTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleNumber != null" >
+        #{saleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="saleTotalPrice != null" >
+        #{saleTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null" >
+        #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="remainingNumber != null" >
+        #{remainingNumber,jdbcType=INTEGER},
+      </if>
+      <if test="takeTime != null" >
+        #{takeTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.InventoryInfo" >
+    update inventory_info
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseTotalPrice != null" >
+        purchase_total_price = #{purchaseTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleNumber != null" >
+        sale_number = #{saleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="saleTotalPrice != null" >
+        sale_total_price = #{saleTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null" >
+        profit = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="remainingNumber != null" >
+        remaining_number = #{remainingNumber,jdbcType=INTEGER},
+      </if>
+      <if test="takeTime != null" >
+        take_time = #{takeTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.InventoryInfo" >
+    update inventory_info
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      purchase_total_price = #{purchaseTotalPrice,jdbcType=DECIMAL},
+      sale_number = #{saleNumber,jdbcType=INTEGER},
+      sale_total_price = #{saleTotalPrice,jdbcType=DECIMAL},
+      profit = #{profit,jdbcType=DECIMAL},
+      remaining_number = #{remainingNumber,jdbcType=INTEGER},
+      take_time = #{takeTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   
+  <insert id="insertInventoryInfo" parameterType="com.sanxia.salesManagement.system.model.InventoryInfo" >
+    insert into inventory_info (id, goods_id, goods_name, 
+      purchase_price, purchase_total_price, sale_number, 
+      sale_total_price, profit, remaining_number, 
+      take_time)
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{purchasePrice,jdbcType=DECIMAL}, #{purchaseTotalPrice,jdbcType=DECIMAL}, #{saleNumber,jdbcType=INTEGER}, 
+      #{saleTotalPrice,jdbcType=DECIMAL}, #{profit,jdbcType=DECIMAL}, #{remainingNumber,jdbcType=INTEGER}, 
+      #{takeTime,jdbcType=DATE})
+  </insert>
+  
+  <select id="queryAllInventoryInfo" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from inventory_info
+  </select>
+  
+  
+   <select id="queryInventoryInfoByYear" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from inventory_info
+    where goods_id=#{goodsIdSearch} 
+    AND take_time BETWEEN #{startTimeSearch} AND #{endTimeSearch}
+  </select>
+</mapper>

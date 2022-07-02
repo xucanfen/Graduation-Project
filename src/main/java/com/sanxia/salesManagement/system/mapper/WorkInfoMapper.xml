@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.WorkInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.WorkInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="salesman_id" property="salesmanId" jdbcType="INTEGER" />
+    <result column="salesman_name" property="salesmanName" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="DATE" />
+    <result column="start_time" property="startTime" jdbcType="TIME" />
+    <result column="end_time" property="endTime" jdbcType="TIME" />
+    <result column="late" property="late" jdbcType="VARCHAR" />
+    <result column="leave_early" property="leaveEarly" jdbcType="VARCHAR" />
+    <result column="absenteeism" property="absenteeism" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, salesman_id, salesman_name, time, start_time, end_time, late, leave_early, absenteeism
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from work_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from work_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.WorkInfo" >
+    insert into work_info (id, salesman_id, salesman_name, 
+      time, start_time, end_time, 
+      late, leave_early, absenteeism
+      )
+    values (#{id,jdbcType=INTEGER}, #{salesmanId,jdbcType=INTEGER}, #{salesmanName,jdbcType=VARCHAR}, 
+      #{time,jdbcType=DATE}, #{startTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, 
+      #{late,jdbcType=VARCHAR}, #{leaveEarly,jdbcType=VARCHAR}, #{absenteeism,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.WorkInfo" >
+    insert into work_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="salesmanId != null" >
+        salesman_id,
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="late != null" >
+        late,
+      </if>
+      <if test="leaveEarly != null" >
+        leave_early,
+      </if>
+      <if test="absenteeism != null" >
+        absenteeism,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanId != null" >
+        #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanName != null" >
+        #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIME},
+      </if>
+      <if test="late != null" >
+        #{late,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveEarly != null" >
+        #{leaveEarly,jdbcType=VARCHAR},
+      </if>
+      <if test="absenteeism != null" >
+        #{absenteeism,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.WorkInfo" >
+    update work_info
+    <set >
+      <if test="salesmanId != null" >
+        salesman_id = #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=DATE},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIME},
+      </if>
+      <if test="late != null" >
+        late = #{late,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveEarly != null" >
+        leave_early = #{leaveEarly,jdbcType=VARCHAR},
+      </if>
+      <if test="absenteeism != null" >
+        absenteeism = #{absenteeism,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.WorkInfo" >
+    update work_info
+    set salesman_id = #{salesmanId,jdbcType=INTEGER},
+      salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      time = #{time,jdbcType=DATE},
+      start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME},
+      late = #{late,jdbcType=VARCHAR},
+      leave_early = #{leaveEarly,jdbcType=VARCHAR},
+      absenteeism = #{absenteeism,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <select id="queryAllWorkInfo" resultMap="BaseResultMap"   >
+    select 
+    <include refid="Base_Column_List" />
+    from work_info
+  </select>
+  
+  
+   <insert id="addWorkInfoByWorkInfo" parameterType="com.sanxia.salesManagement.system.model.WorkInfo" >
+    insert into work_info (id, salesman_id, salesman_name, 
+      time, start_time, end_time, 
+      late, leave_early, absenteeism
+      )
+    values (#{id,jdbcType=INTEGER}, #{salesmanId,jdbcType=INTEGER}, #{salesmanName,jdbcType=VARCHAR}, 
+      #{time,jdbcType=DATE}, #{startTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, 
+      #{late,jdbcType=VARCHAR}, #{leaveEarly,jdbcType=VARCHAR}, #{absenteeism,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <select id="queryWorkInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from work_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <update id="updateWorkInfoByWorkInfo" parameterType="com.sanxia.salesManagement.system.model.WorkInfo" >
+    update work_info
+    set salesman_id = #{salesmanId,jdbcType=INTEGER},
+      salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      time = #{time,jdbcType=DATE},
+      start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME},
+      late = #{late,jdbcType=VARCHAR},
+      leave_early = #{leaveEarly,jdbcType=VARCHAR},
+      absenteeism = #{absenteeism,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <delete id="deleteWorkInfoById" parameterType="java.lang.Integer" >
+    delete from work_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+   <select id="selectWorkInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from work_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectWorkInfoByIdAndTime" resultMap="BaseResultMap" parameterType="com.sanxia.salesManagement.system.model.WorkInfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from work_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+    and time = #{time,jdbcType=DATE}
+  </select>
+  
+  
+  <select id="queryTotalByIdAndTime" resultType="java.lang.Integer" parameterType="Map">
+   SELECT 
+   COUNT(*) 
+   FROM work_info 
+   WHERE salesman_id=#{salesmanIdTotal} 
+   AND time BETWEEN #{startTimeTotal} AND #{endTimeTotal}
+   AND absenteeism='否'
+  </select>
+  
+  <select id="queryLateByIdAndTime" resultType="java.lang.Integer" parameterType="Map">
+   SELECT 
+   COUNT(*) 
+   FROM work_info 
+   WHERE salesman_id=#{salesmanIdTotal} 
+   AND time BETWEEN #{startTimeTotal} AND #{endTimeTotal}
+   AND late='是'
+  </select>
+  
+  <select id="queryEarlyByIdAndTime" resultType="java.lang.Integer" parameterType="Map">
+   SELECT 
+   COUNT(*) 
+   FROM work_info 
+   WHERE salesman_id=#{salesmanIdTotal} 
+   AND time BETWEEN #{startTimeTotal} AND #{endTimeTotal}
+   AND absenteeism='否'
+  </select>
+  
+  <select id="selectWorkInfoByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from work_info
+    where salesman_name like #{salesmanName,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.SalesmanInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.SalesmanInfo" >
+    <id column="salesman_id" property="salesmanId" jdbcType="INTEGER" />
+    <result column="salesman_name" property="salesmanName" jdbcType="VARCHAR" />
+    <result column="salesman_sex" property="salesmanSex" jdbcType="VARCHAR" />
+    <result column="salesman_age" property="salesmanAge" jdbcType="INTEGER" />
+    <result column="salesman_tel" property="salesmanTel" jdbcType="INTEGER" />
+    <result column="join_time" property="joinTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    salesman_id, salesman_name, salesman_sex, salesman_age, salesman_tel, join_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from salesman_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from salesman_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.SalesmanInfo" >
+    insert into salesman_info (salesman_id, salesman_name, salesman_sex, 
+      salesman_age, salesman_tel, join_time
+      )
+    values (#{salesmanId,jdbcType=INTEGER}, #{salesmanName,jdbcType=VARCHAR}, #{salesmanSex,jdbcType=VARCHAR}, 
+      #{salesmanAge,jdbcType=INTEGER}, #{salesmanTel,jdbcType=INTEGER}, #{joinTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.SalesmanInfo" >
+    insert into salesman_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salesmanId != null" >
+        salesman_id,
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name,
+      </if>
+      <if test="salesmanSex != null" >
+        salesman_sex,
+      </if>
+      <if test="salesmanAge != null" >
+        salesman_age,
+      </if>
+      <if test="salesmanTel != null" >
+        salesman_tel,
+      </if>
+      <if test="joinTime != null" >
+        join_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salesmanId != null" >
+        #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanName != null" >
+        #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanSex != null" >
+        #{salesmanSex,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanAge != null" >
+        #{salesmanAge,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanTel != null" >
+        #{salesmanTel,jdbcType=INTEGER},
+      </if>
+      <if test="joinTime != null" >
+        #{joinTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.SalesmanInfo" >
+    update salesman_info
+    <set >
+      <if test="salesmanName != null" >
+        salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanSex != null" >
+        salesman_sex = #{salesmanSex,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanAge != null" >
+        salesman_age = #{salesmanAge,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanTel != null" >
+        salesman_tel = #{salesmanTel,jdbcType=INTEGER},
+      </if>
+      <if test="joinTime != null" >
+        join_time = #{joinTime,jdbcType=DATE},
+      </if>
+    </set>
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.SalesmanInfo" >
+    update salesman_info
+    set salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      salesman_sex = #{salesmanSex,jdbcType=VARCHAR},
+      salesman_age = #{salesmanAge,jdbcType=INTEGER},
+      salesman_tel = #{salesmanTel,jdbcType=INTEGER},
+      join_time = #{joinTime,jdbcType=DATE}
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="queryAllSalesmanInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from salesman_info
+  </select>
+  
+    
+  <select id="selectMax_id" resultType="java.lang.Integer"  >
+    select 
+    IFNULL(MAX(salesman_id),0)
+    from salesman_info
+  </select>
+  
+   <insert id="addsalesmanInfoBysalesmanInfo" parameterType="com.sanxia.salesManagement.system.model.SalesmanInfo" >
+    insert into salesman_info (salesman_id, salesman_name, salesman_sex, 
+      salesman_age, salesman_tel, join_time
+      )
+    values (#{salesmanId,jdbcType=INTEGER}, #{salesmanName,jdbcType=VARCHAR}, #{salesmanSex,jdbcType=VARCHAR}, 
+      #{salesmanAge,jdbcType=INTEGER}, #{salesmanTel,jdbcType=INTEGER}, #{joinTime,jdbcType=DATE}
+      )
+  </insert>
+  
+  <select id="querySalesmanInfoBySalesmanId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from salesman_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </select>
+  
+  
+  <update id="updateSalesmanInfoById" parameterType="com.sanxia.salesManagement.system.model.SalesmanInfo" >
+    update salesman_info
+    set salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      salesman_sex = #{salesmanSex,jdbcType=VARCHAR},
+      salesman_age = #{salesmanAge,jdbcType=INTEGER},
+      salesman_tel = #{salesmanTel,jdbcType=INTEGER},
+      join_time = #{joinTime,jdbcType=DATE}
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="deleteSalesmanInfoById" parameterType="java.lang.Integer" >
+    delete from salesman_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </delete>
+  
+  
+   <select id="selectNameById" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select 
+    salesman_name
+    from salesman_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="querySalesmanInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from salesman_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="querySalesmanInfoByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from salesman_info
+    where salesman_name like #{salesmanName,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

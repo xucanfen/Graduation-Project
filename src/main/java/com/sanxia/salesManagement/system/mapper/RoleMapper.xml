@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.Role" >
+    <id column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_state" property="roleState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    role_id, role_name, role_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.Role" >
+    insert into role (role_id, role_name, role_state
+      )
+    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleState,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="roleState != null" >
+        role_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleState != null" >
+        #{roleState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.Role" >
+    update role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleState != null" >
+        role_state = #{roleState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.Role" >
+    update role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_state = #{roleState,jdbcType=VARCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  
+ <!--查询所有角色列表  -->
+ <select id="queryAllRole" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role
+  </select>
+  
+  <!--添加角色列表  --> 
+  <insert id="addRoleByRole" parameterType="com.sanxia.salesManagement.system.model.Role" >
+    insert into role (role_id, role_name, role_state
+      )
+    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleState,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+   <!--查询角色列表  --> 
+  <select id="queryRoleByRole_id" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  
+  <!--修改角色列表  --> 
+  <update id="updateRoleById" parameterType="com.sanxia.salesManagement.system.model.Role" >
+    update role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_state = #{roleState,jdbcType=VARCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  
+    <!--删除角色列表  --> 
+  <delete id="deleteRoleByRole_id" parameterType="java.lang.Integer" >
+    delete from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  
+  
+  
+  <select id="queryXZRoleByUser_id"  resultMap="BaseResultMap">
+		SELECT
+		role.role_id,role.role_name,role.role_state
+		FROM user_role INNER JOIN role ON user_role.role_id =
+	    role.role_id WHERE user_id=#{userId,jdbcType=INTEGER}
+	</select>
+  
+  
+  <select id="queryRole_idByRole_name" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select 
+    role_id
+    from role
+    where role_name = #{roleName,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectRoleByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectRoleByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where  role_name like #{roleName,jdbcType=VARCHAR}
+  </select>
+</mapper>

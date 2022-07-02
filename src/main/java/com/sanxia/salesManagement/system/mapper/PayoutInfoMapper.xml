@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.PayoutInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.PayoutInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="payout_money" property="payoutMoney" jdbcType="DECIMAL" />
+    <result column="use_ways" property="useWays" jdbcType="VARCHAR" />
+    <result column="account_number" property="accountNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, time, payout_money, use_ways, account_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from payout_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from payout_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.PayoutInfo" >
+    insert into payout_info (id, time, payout_money, 
+      use_ways, account_number)
+    values (#{id,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{payoutMoney,jdbcType=DECIMAL}, 
+      #{useWays,jdbcType=VARCHAR}, #{accountNumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.PayoutInfo" >
+    insert into payout_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="payoutMoney != null" >
+        payout_money,
+      </if>
+      <if test="useWays != null" >
+        use_ways,
+      </if>
+      <if test="accountNumber != null" >
+        account_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payoutMoney != null" >
+        #{payoutMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="useWays != null" >
+        #{useWays,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        #{accountNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.PayoutInfo" >
+    update payout_info
+    <set >
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payoutMoney != null" >
+        payout_money = #{payoutMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="useWays != null" >
+        use_ways = #{useWays,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        account_number = #{accountNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.PayoutInfo" >
+    update payout_info
+    set time = #{time,jdbcType=TIMESTAMP},
+      payout_money = #{payoutMoney,jdbcType=DECIMAL},
+      use_ways = #{useWays,jdbcType=VARCHAR},
+      account_number = #{accountNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <select id="queryAllPayoutInfo" resultMap="BaseResultMap"   >
+    select 
+    <include refid="Base_Column_List" />
+    from payout_info
+  </select>
+  
+   <insert id="addPayoutInfoByInfo" parameterType="com.sanxia.salesManagement.system.model.PayoutInfo" >
+    insert into payout_info (id, time, payout_money, 
+      use_ways, account_number)
+    values (#{id,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{payoutMoney,jdbcType=DECIMAL}, 
+      #{useWays,jdbcType=VARCHAR}, #{accountNumber,jdbcType=INTEGER})
+  </insert>
+  
+  <select id="queryPayoutInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from payout_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updatePayoutInfoByInfo" parameterType="com.sanxia.salesManagement.system.model.PayoutInfo" >
+    update payout_info
+    set time = #{time,jdbcType=TIMESTAMP},
+      payout_money = #{payoutMoney,jdbcType=DECIMAL},
+      use_ways = #{useWays,jdbcType=VARCHAR},
+      account_number = #{accountNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="deletePayoutInfoById" parameterType="java.lang.Integer" >
+    delete from payout_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  
+  <select id="selectPayoutInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from payout_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+</mapper>

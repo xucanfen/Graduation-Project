@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.SupplierGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.SupplierGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="supplier_id" property="supplierId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_type" property="goodsType" jdbcType="VARCHAR" />
+    <result column="supply_time" property="supplyTime" jdbcType="DATE" />
+    <result column="supply_price" property="supplyPrice" jdbcType="DECIMAL" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, supplier_id, goods_id, goods_name, goods_type, supply_time, supply_price, number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from supplier_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.SupplierGoods" >
+    insert into supplier_goods (id, supplier_id, goods_id, 
+      goods_name, goods_type, supply_time, 
+      supply_price, number)
+    values (#{id,jdbcType=INTEGER}, #{supplierId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR}, #{supplyTime,jdbcType=DATE}, 
+      #{supplyPrice,jdbcType=DECIMAL}, #{number,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.SupplierGoods" >
+    insert into supplier_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsType != null" >
+        goods_type,
+      </if>
+      <if test="supplyTime != null" >
+        supply_time,
+      </if>
+      <if test="supplyPrice != null" >
+        supply_price,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyTime != null" >
+        #{supplyTime,jdbcType=DATE},
+      </if>
+      <if test="supplyPrice != null" >
+        #{supplyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.SupplierGoods" >
+    update supplier_goods
+    <set >
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null" >
+        goods_type = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyTime != null" >
+        supply_time = #{supplyTime,jdbcType=DATE},
+      </if>
+      <if test="supplyPrice != null" >
+        supply_price = #{supplyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.SupplierGoods" >
+    update supplier_goods
+    set supplier_id = #{supplierId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      supply_time = #{supplyTime,jdbcType=DATE},
+      supply_price = #{supplyPrice,jdbcType=DECIMAL},
+      number = #{number,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  <select id="selectPriceByIdAndTime" resultType="java.math.BigDecimal" parameterType="Map" >
+   SELECT round( AVG(supply_price),2 ) 
+   FROM supplier_goods 
+   WHERE goods_id = #{goodsIdTotal} 
+   AND supply_time BETWEEN #{startTimeTotal} AND #{endTimeTotal}
+  </select>
+  
+  
+  <select id="selectNumberByIdAndTime" resultType="java.lang.Integer" parameterType="Map" >
+   SELECT IFNULL(SUM(number),0) 
+   FROM supplier_goods 
+   WHERE goods_id = #{goodsIdTotal} 
+   AND supply_time BETWEEN #{startTimeTotal} AND #{endTimeTotal}
+  </select>
+  
+  <!-- ##################################### -->
+  <!-- 查询近期供应所有商品 -->
+    <select id="queryAllSupplierGoodsInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_goods
+  </select>
+  
+   <!--增加供应商品相关所有信息  -->
+     <insert id="addSupplierGoodsBySupplierGoods" parameterType="com.sanxia.salesManagement.system.model.SupplierGoods" >
+    insert into supplier_goods (id, supplier_id, goods_id, 
+      goods_name, goods_type, supply_time, 
+      supply_price, number)
+    values (#{id,jdbcType=INTEGER}, #{supplierId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsType,jdbcType=VARCHAR}, #{supplyTime,jdbcType=DATE}, 
+      #{supplyPrice,jdbcType=DECIMAL}, #{number,jdbcType=INTEGER})
+  </insert>
+  
+  <!-- 删除供应单 -->
+    <delete id="deleteSupplierInfoById" parameterType="java.lang.Integer" >
+    delete from supplier_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 根据id查询指定供应单 -->
+    <select id="querySupplierGoodsInfoBy_id" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 修改供应单信息 -->
+    <update id="UpdateSupplierGoodsIndoBy_id" parameterType="com.sanxia.salesManagement.system.model.SupplierGoods" >
+    update supplier_goods
+    set supplier_id = #{supplierId,jdbcType=INTEGER},
+      supply_time = #{supplyTime,jdbcType=DATE},
+      supply_price = #{supplyPrice,jdbcType=DECIMAL},
+      number = #{number,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <!-- 根据供应商ID搜索相关供应单信息 -->
+    <select id="selectSupplierGoodsBySupplierId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_goods
+    where supplier_id = #{supplierId,jdbcType=INTEGER}
+  	</select>
+  	
+  	 <!-- 根据商品名模糊搜索相关供应单信息 -->
+  	<select id="selectSupplierGoodsByGoodsName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_goods
+    where goods_name like #{goodsName,jdbcType=VARCHAR}
+  	</select>
+  	
+  	
+  <select id="selectSupplierIdById" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select 
+    supplier_id
+    from supplier_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+ 
+</mapper>

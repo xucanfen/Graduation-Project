@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.OverInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.OverInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="salesman_id" property="salesmanId" jdbcType="INTEGER" />
+    <result column="salesman_name" property="salesmanName" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="total_days" property="totalDays" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, salesman_id, salesman_name, start_time, end_time, total_days
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from over_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from over_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.OverInfo" >
+    insert into over_info (id, salesman_id, salesman_name, 
+      start_time, end_time, total_days
+      )
+    values (#{id,jdbcType=INTEGER}, #{salesmanId,jdbcType=INTEGER}, #{salesmanName,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{totalDays,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.OverInfo" >
+    insert into over_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="salesmanId != null" >
+        salesman_id,
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="totalDays != null" >
+        total_days,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanId != null" >
+        #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanName != null" >
+        #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalDays != null" >
+        #{totalDays,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.OverInfo" >
+    update over_info
+    <set >
+      <if test="salesmanId != null" >
+        salesman_id = #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalDays != null" >
+        total_days = #{totalDays,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.OverInfo" >
+    update over_info
+    set salesman_id = #{salesmanId,jdbcType=INTEGER},
+      salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      total_days = #{totalDays,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+ <!-- ///////////////// --> 
+   <select id="queryAllOverInfo" resultMap="BaseResultMap"   >
+    select 
+    <include refid="Base_Column_List" />
+    from over_info
+  </select>
+  
+    <insert id="addOverInfoByOverInfo" parameterType="com.sanxia.salesManagement.system.model.OverInfo" >
+    insert into over_info (id, salesman_id, salesman_name, 
+      start_time, end_time, total_days
+      )
+    values (#{id,jdbcType=INTEGER}, #{salesmanId,jdbcType=INTEGER}, #{salesmanName,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{totalDays,jdbcType=DECIMAL}
+      )
+  </insert>
+  
+  
+   <select id="queryOverInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from over_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+   <update id="updateOverInfoByOverInfo" parameterType="com.sanxia.salesManagement.system.model.OverInfo" >
+    update over_info
+    set salesman_id = #{salesmanId,jdbcType=INTEGER},
+      salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      total_days = #{totalDays,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <delete id="deleteOverInfoById" parameterType="java.lang.Integer" >
+    delete from over_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  
+   <select id="queryOverByIdAndTime" resultType="java.math.BigDecimal" parameterType="Map" >
+   SELECT SUM(total_days) 
+   FROM over_info
+   WHERE salesman_id = #{salesmanIdTotal} 
+   AND start_time BETWEEN #{startTimeTotal} AND #{endTimeTotal}
+  </select>
+  
+  
+   <select id="selectOverBySalesmansId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from over_info
+    where salesman_id = #{salesmanId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectOBySalesmansName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from over_info
+    where salesman_name like #{salesmanName,jdbcType=VARCHAR}
+  </select>
+</mapper>

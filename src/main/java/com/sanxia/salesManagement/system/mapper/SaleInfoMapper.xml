@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.SaleInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.SaleInfo" >
+    <id column="sale_id" property="saleId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="vip_id" property="vipId" jdbcType="INTEGER" />
+    <result column="vip_name" property="vipName" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="sale_number" property="saleNumber" jdbcType="INTEGER" />
+    <result column="unit_price" property="unitPrice" jdbcType="DECIMAL" />
+    <result column="discount_price" property="discountPrice" jdbcType="DECIMAL" />
+    <result column="consume_money" property="consumeMoney" jdbcType="DECIMAL" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="trade_status" property="tradeStatus" jdbcType="VARCHAR" />
+    <result column="deli_type" property="deliType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sale_id, goods_id, vip_id, vip_name, goods_name, sale_number, unit_price, discount_price, 
+    consume_money, time, trade_status, deli_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sale_info
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sale_info
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.SaleInfo" >
+    insert into sale_info (sale_id, goods_id, vip_id, 
+      vip_name, goods_name, sale_number, 
+      unit_price, discount_price, consume_money, 
+      time, trade_status, deli_type
+      )
+    values (#{saleId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{vipId,jdbcType=INTEGER}, 
+      #{vipName,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{saleNumber,jdbcType=INTEGER}, 
+      #{unitPrice,jdbcType=DECIMAL}, #{discountPrice,jdbcType=DECIMAL}, #{consumeMoney,jdbcType=DECIMAL}, 
+      #{time,jdbcType=TIMESTAMP}, #{tradeStatus,jdbcType=VARCHAR}, #{deliType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.SaleInfo" >
+    insert into sale_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="saleId != null" >
+        sale_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="vipId != null" >
+        vip_id,
+      </if>
+      <if test="vipName != null" >
+        vip_name,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="saleNumber != null" >
+        sale_number,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="discountPrice != null" >
+        discount_price,
+      </if>
+      <if test="consumeMoney != null" >
+        consume_money,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status,
+      </if>
+      <if test="deliType != null" >
+        deli_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="saleId != null" >
+        #{saleId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="vipId != null" >
+        #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="vipName != null" >
+        #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleNumber != null" >
+        #{saleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null" >
+        #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeMoney != null" >
+        #{consumeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeStatus != null" >
+        #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deliType != null" >
+        #{deliType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.SaleInfo" >
+    update sale_info
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="vipId != null" >
+        vip_id = #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="vipName != null" >
+        vip_name = #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleNumber != null" >
+        sale_number = #{saleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null" >
+        discount_price = #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeMoney != null" >
+        consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeStatus != null" >
+        trade_status = #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deliType != null" >
+        deli_type = #{deliType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.SaleInfo" >
+    update sale_info
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      vip_id = #{vipId,jdbcType=INTEGER},
+      vip_name = #{vipName,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      sale_number = #{saleNumber,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      time = #{time,jdbcType=TIMESTAMP},
+      trade_status = #{tradeStatus,jdbcType=VARCHAR},
+      deli_type = #{deliType,jdbcType=VARCHAR}
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </update>
+  
+   <!-- ########################################################### -->
+   <!--查询所有订单信息  -->
+     <select id="queryAllSaleInfo" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sale_info
+  </select>
+    <!--删除所有订单信息  -->
+    <delete id="deleteSaleInfoBySaleId" parameterType="java.lang.Integer" >
+    delete from sale_info
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </delete>
+  <!-- 增加销售信息 -->
+    <insert id="addSaleInfoBySaleInfo" parameterType="com.sanxia.salesManagement.system.model.SaleInfo" >
+    insert into sale_info (sale_id, goods_id, vip_id, 
+      vip_name, goods_name, sale_number, 
+      unit_price, discount_price, consume_money, 
+      time, trade_status, deli_type
+      )
+    values (#{saleId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{vipId,jdbcType=INTEGER}, 
+      #{vipName,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{saleNumber,jdbcType=INTEGER}, 
+      #{unitPrice,jdbcType=DECIMAL}, #{discountPrice,jdbcType=DECIMAL}, #{consumeMoney,jdbcType=DECIMAL}, 
+      #{time,jdbcType=TIMESTAMP}, #{tradeStatus,jdbcType=VARCHAR}, #{deliType,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+   <select id="querySaleBySale_id" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sale_info
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </select>
+  
+   <update id="updateSaleInfoBySaleInfo" parameterType="com.sanxia.salesManagement.system.model.SaleInfo" >
+    update sale_info
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      vip_id = #{vipId,jdbcType=INTEGER},
+      vip_name = #{vipName,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      sale_number = #{saleNumber,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      time = #{time,jdbcType=TIMESTAMP},
+      deli_type = #{deliType,jdbcType=VARCHAR}
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </update>
+  
+   <update id="updateSaleStatusBySaleInfo" parameterType="com.sanxia.salesManagement.system.model.SaleInfo" >
+    update sale_info
+    set 
+    trade_status = #{tradeStatus,jdbcType=VARCHAR} 
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询 -->
+   
+  <select id="queryAllSaleInfoBySaleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sale_info
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="queryAllSaleInfoByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sale_info
+    where  goods_name like #{goodsName,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectStatusBySaleId" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select 
+    trade_status
+    from sale_info
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </select>
+</mapper>

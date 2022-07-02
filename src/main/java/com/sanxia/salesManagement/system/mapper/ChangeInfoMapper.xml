@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.ChangeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.ChangeInfo" >
+    <id column="change_id" property="changeId" jdbcType="INTEGER" />
+    <result column="sale_id" property="saleId" jdbcType="INTEGER" />
+    <result column="new_goods_id" property="newGoodsId" jdbcType="INTEGER" />
+    <result column="new_goods_name" property="newGoodsName" jdbcType="VARCHAR" />
+    <result column="change_reason" property="changeReason" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+    <result column="apply_status" property="applyStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    change_id, sale_id, new_goods_id, new_goods_name, change_reason, change_time, apply_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from change_info
+    where change_id = #{changeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from change_info
+    where change_id = #{changeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.ChangeInfo" >
+    insert into change_info (change_id, sale_id, new_goods_id, 
+      new_goods_name, change_reason, change_time, 
+      apply_status)
+    values (#{changeId,jdbcType=INTEGER}, #{saleId,jdbcType=INTEGER}, #{newGoodsId,jdbcType=INTEGER}, 
+      #{newGoodsName,jdbcType=VARCHAR}, #{changeReason,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}, 
+      #{applyStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.ChangeInfo" >
+    insert into change_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="changeId != null" >
+        change_id,
+      </if>
+      <if test="saleId != null" >
+        sale_id,
+      </if>
+      <if test="newGoodsId != null" >
+        new_goods_id,
+      </if>
+      <if test="newGoodsName != null" >
+        new_goods_name,
+      </if>
+      <if test="changeReason != null" >
+        change_reason,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+      <if test="applyStatus != null" >
+        apply_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="changeId != null" >
+        #{changeId,jdbcType=INTEGER},
+      </if>
+      <if test="saleId != null" >
+        #{saleId,jdbcType=INTEGER},
+      </if>
+      <if test="newGoodsId != null" >
+        #{newGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="newGoodsName != null" >
+        #{newGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="changeReason != null" >
+        #{changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyStatus != null" >
+        #{applyStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.ChangeInfo" >
+    update change_info
+    <set >
+      <if test="saleId != null" >
+        sale_id = #{saleId,jdbcType=INTEGER},
+      </if>
+      <if test="newGoodsId != null" >
+        new_goods_id = #{newGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="newGoodsName != null" >
+        new_goods_name = #{newGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="changeReason != null" >
+        change_reason = #{changeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyStatus != null" >
+        apply_status = #{applyStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where change_id = #{changeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.ChangeInfo" >
+    update change_info
+    set sale_id = #{saleId,jdbcType=INTEGER},
+      new_goods_id = #{newGoodsId,jdbcType=INTEGER},
+      new_goods_name = #{newGoodsName,jdbcType=VARCHAR},
+      change_reason = #{changeReason,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      apply_status = #{applyStatus,jdbcType=VARCHAR}
+    where change_id = #{changeId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="queryAllChangeInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from change_info
+  </select>
+  
+  <insert id="addChangeInfoByInfo" parameterType="com.sanxia.salesManagement.system.model.ChangeInfo" >
+    insert into change_info (change_id, sale_id, new_goods_id, 
+      new_goods_name, change_reason, change_time, 
+      apply_status)
+    values (#{changeId,jdbcType=INTEGER}, #{saleId,jdbcType=INTEGER}, #{newGoodsId,jdbcType=INTEGER}, 
+      #{newGoodsName,jdbcType=VARCHAR}, #{changeReason,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}, 
+      #{applyStatus,jdbcType=VARCHAR})
+  </insert>
+  
+   <select id="selectChangeInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from change_info
+    where change_id = #{changeId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateStatusByChange" parameterType="com.sanxia.salesManagement.system.model.ChangeInfo" >
+    update change_info
+    set  
+    apply_status = #{applyStatus,jdbcType=VARCHAR}
+    where change_id = #{changeId,jdbcType=INTEGER}
+  </update>
+  
+    <select id="queryAllChangeInfoByChangeId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from change_info
+    where change_id = #{changeId,jdbcType=INTEGER}
+  </select>
+  
+    <select id="queryAllChangeInfoByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from change_info
+    where  new_goods_name like #{newGoodsName,jdbcType=VARCHAR}
+  </select>
+</mapper>

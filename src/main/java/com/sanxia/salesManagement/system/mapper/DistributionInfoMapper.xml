@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.DistributionInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.DistributionInfo" >
+    <id column="distribution_id" property="distributionId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_number" property="goodsNumber" jdbcType="INTEGER" />
+    <result column="distribution_time" property="distributionTime" jdbcType="DATE" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="distribution_name" property="distributionName" jdbcType="VARCHAR" />
+    <result column="distribution_tel" property="distributionTel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    distribution_id, goods_id, goods_name, goods_number, distribution_time, address, 
+    distribution_name, distribution_tel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from distribution_info
+    where distribution_id = #{distributionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from distribution_info
+    where distribution_id = #{distributionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.DistributionInfo" >
+    insert into distribution_info (distribution_id, goods_id, goods_name, 
+      goods_number, distribution_time, address, 
+      distribution_name, distribution_tel)
+    values (#{distributionId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsNumber,jdbcType=INTEGER}, #{distributionTime,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, 
+      #{distributionName,jdbcType=VARCHAR}, #{distributionTel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.DistributionInfo" >
+    insert into distribution_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="distributionId != null" >
+        distribution_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsNumber != null" >
+        goods_number,
+      </if>
+      <if test="distributionTime != null" >
+        distribution_time,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="distributionName != null" >
+        distribution_name,
+      </if>
+      <if test="distributionTel != null" >
+        distribution_tel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="distributionId != null" >
+        #{distributionId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNumber != null" >
+        #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="distributionTime != null" >
+        #{distributionTime,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionName != null" >
+        #{distributionName,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionTel != null" >
+        #{distributionTel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.DistributionInfo" >
+    update distribution_info
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNumber != null" >
+        goods_number = #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="distributionTime != null" >
+        distribution_time = #{distributionTime,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionName != null" >
+        distribution_name = #{distributionName,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionTel != null" >
+        distribution_tel = #{distributionTel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where distribution_id = #{distributionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.DistributionInfo" >
+    update distribution_info
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_number = #{goodsNumber,jdbcType=INTEGER},
+      distribution_time = #{distributionTime,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      distribution_name = #{distributionName,jdbcType=VARCHAR},
+      distribution_tel = #{distributionTel,jdbcType=VARCHAR}
+    where distribution_id = #{distributionId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询所有 -->
+  <select id="queryAllDistributionInfo" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from distribution_info
+  </select>
+  
+  <!-- 插入 -->
+  <insert id="addDistributionInfoByInfo" parameterType="com.sanxia.salesManagement.system.model.DistributionInfo" >
+    insert into distribution_info (distribution_id, goods_id, goods_name, 
+      goods_number, distribution_time, address, 
+      distribution_name, distribution_tel)
+    values (#{distributionId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsNumber,jdbcType=INTEGER}, #{distributionTime,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, 
+      #{distributionName,jdbcType=VARCHAR}, #{distributionTel,jdbcType=VARCHAR})
+  </insert>
+  
+  
+   <select id="queryDistributionInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from distribution_info
+    where distribution_id = #{distributionId,jdbcType=INTEGER}
+  </select>
+  
+   <update id="updateDistributionInfoByDistribution" parameterType="com.sanxia.salesManagement.system.model.DistributionInfo" >
+    update distribution_info
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_number = #{goodsNumber,jdbcType=INTEGER},
+      distribution_time = #{distributionTime,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      distribution_name = #{distributionName,jdbcType=VARCHAR},
+      distribution_tel = #{distributionTel,jdbcType=VARCHAR}
+    where distribution_id = #{distributionId,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="deleteDistributionInfoById" parameterType="java.lang.Integer" >
+    delete from distribution_info
+    where distribution_id = #{distributionId,jdbcType=INTEGER}
+  </delete>
+  
+  <select id="selectDistributionById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from distribution_info
+    where distribution_id = #{distributionId,jdbcType=INTEGER}
+  </select>
+</mapper>

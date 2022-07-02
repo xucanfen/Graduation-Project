@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.TradeFinishMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.TradeFinish" >
+    <id column="trade_id" property="tradeId" jdbcType="INTEGER" />
+    <result column="sale_id" property="saleId" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="vip_id" property="vipId" jdbcType="INTEGER" />
+    <result column="vip_name" property="vipName" jdbcType="VARCHAR" />
+    <result column="unit_price" property="unitPrice" jdbcType="DECIMAL" />
+    <result column="discount_price" property="discountPrice" jdbcType="DECIMAL" />
+    <result column="sale_number" property="saleNumber" jdbcType="INTEGER" />
+    <result column="consume_money" property="consumeMoney" jdbcType="DECIMAL" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="deli_type" property="deliType" jdbcType="VARCHAR" />
+    <result column="finish_type" property="finishType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    trade_id, sale_id, goods_id, goods_name, vip_id, vip_name, unit_price, discount_price, 
+    sale_number, consume_money, time, deli_type, finish_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_finish
+    where trade_id = #{tradeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from trade_finish
+    where trade_id = #{tradeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.TradeFinish" >
+    insert into trade_finish (trade_id, sale_id, goods_id, 
+      goods_name, vip_id, vip_name, 
+      unit_price, discount_price, sale_number, 
+      consume_money, time, deli_type, 
+      finish_type)
+    values (#{tradeId,jdbcType=INTEGER}, #{saleId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{vipId,jdbcType=INTEGER}, #{vipName,jdbcType=VARCHAR}, 
+      #{unitPrice,jdbcType=DECIMAL}, #{discountPrice,jdbcType=DECIMAL}, #{saleNumber,jdbcType=INTEGER}, 
+      #{consumeMoney,jdbcType=DECIMAL}, #{time,jdbcType=TIMESTAMP}, #{deliType,jdbcType=VARCHAR}, 
+      #{finishType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.TradeFinish" >
+    insert into trade_finish
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tradeId != null" >
+        trade_id,
+      </if>
+      <if test="saleId != null" >
+        sale_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="vipId != null" >
+        vip_id,
+      </if>
+      <if test="vipName != null" >
+        vip_name,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="discountPrice != null" >
+        discount_price,
+      </if>
+      <if test="saleNumber != null" >
+        sale_number,
+      </if>
+      <if test="consumeMoney != null" >
+        consume_money,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="deliType != null" >
+        deli_type,
+      </if>
+      <if test="finishType != null" >
+        finish_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="saleId != null" >
+        #{saleId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipId != null" >
+        #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="vipName != null" >
+        #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null" >
+        #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleNumber != null" >
+        #{saleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="consumeMoney != null" >
+        #{consumeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliType != null" >
+        #{deliType,jdbcType=VARCHAR},
+      </if>
+      <if test="finishType != null" >
+        #{finishType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.TradeFinish" >
+    update trade_finish
+    <set >
+      <if test="saleId != null" >
+        sale_id = #{saleId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipId != null" >
+        vip_id = #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="vipName != null" >
+        vip_name = #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null" >
+        discount_price = #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleNumber != null" >
+        sale_number = #{saleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="consumeMoney != null" >
+        consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliType != null" >
+        deli_type = #{deliType,jdbcType=VARCHAR},
+      </if>
+      <if test="finishType != null" >
+        finish_type = #{finishType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where trade_id = #{tradeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.TradeFinish" >
+    update trade_finish
+    set sale_id = #{saleId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      vip_id = #{vipId,jdbcType=INTEGER},
+      vip_name = #{vipName,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      sale_number = #{saleNumber,jdbcType=INTEGER},
+      consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      time = #{time,jdbcType=TIMESTAMP},
+      deli_type = #{deliType,jdbcType=VARCHAR},
+      finish_type = #{finishType,jdbcType=VARCHAR}
+    where trade_id = #{tradeId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectSaleNumByIdAndTime" resultType="java.lang.Integer" parameterType="Map" >
+   SELECT SUM(sale_number) 
+   FROM trade_finish 
+   WHERE goods_id = #{goodsIdTotal} 
+   AND time BETWEEN #{startTimeTotal} AND #{endTimeTotal}
+  </select>
+  
+   <select id="selectSalePriceByIdAndTime" resultType="java.math.BigDecimal" parameterType="Map" >
+   SELECT SUM(consume_money) 
+   FROM trade_finish 
+   WHERE goods_id = #{goodsIdTotal} 
+   AND time BETWEEN #{startTimeTotal} AND #{endTimeTotal}
+  </select>
+  
+  <!-- ########################################################################### -->
+  <!-- 查询所有交易完成订单信息 -->
+    <select id="queryAllTradeFinish" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_finish
+  </select>
+  
+   <insert id="addTradeFinishBySaleInfo" parameterType="com.sanxia.salesManagement.system.model.TradeFinish" >
+    insert into trade_finish (trade_id, sale_id, goods_id, 
+      goods_name, vip_id, vip_name, 
+      unit_price, discount_price, sale_number, 
+      consume_money, time, deli_type, 
+      finish_type)
+    values (#{tradeId,jdbcType=INTEGER}, #{saleId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{vipId,jdbcType=INTEGER}, #{vipName,jdbcType=VARCHAR}, 
+      #{unitPrice,jdbcType=DECIMAL}, #{discountPrice,jdbcType=DECIMAL}, #{saleNumber,jdbcType=INTEGER}, 
+      #{consumeMoney,jdbcType=DECIMAL}, #{time,jdbcType=TIMESTAMP}, #{deliType,jdbcType=VARCHAR}, 
+      #{finishType,jdbcType=VARCHAR})
+  </insert>
+  
+   <delete id="deleteTradeFinishBySaleId" parameterType="java.lang.Integer" >
+    delete from trade_finish
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </delete>
+  
+   <select id="selectTradeBySaleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_finish
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateFinishType" parameterType="com.sanxia.salesManagement.system.model.TradeFinish" >
+    update trade_finish
+    set 
+    finish_type = #{finishType,jdbcType=VARCHAR}
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="queryAllTradeFinishBySaleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_finish
+    where sale_id = #{saleId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="queryAllTradeFinishByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_finish
+    where goods_name like #{goodsName,jdbcType=VARCHAR}
+  </select>
+</mapper>

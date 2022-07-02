@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.StatisticsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.StatisticsInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="salesman_id" property="salesmanId" jdbcType="INTEGER" />
+    <result column="salesman_name" property="salesmanName" jdbcType="VARCHAR" />
+    <result column="statistic_time" property="statisticTime" jdbcType="DATE" />
+    <result column="total_work" property="totalWork" jdbcType="DECIMAL" />
+    <result column="total_over" property="totalOver" jdbcType="DECIMAL" />
+    <result column="total_off" property="totalOff" jdbcType="DECIMAL" />
+    <result column="attendance" property="attendance" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, salesman_id, salesman_name, statistic_time, total_work, total_over, total_off, 
+    attendance
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from statistics_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.StatisticsInfo" >
+    insert into statistics_info (id, salesman_id, salesman_name, 
+      statistic_time, total_work, total_over, 
+      total_off, attendance)
+    values (#{id,jdbcType=INTEGER}, #{salesmanId,jdbcType=INTEGER}, #{salesmanName,jdbcType=VARCHAR}, 
+      #{statisticTime,jdbcType=DATE}, #{totalWork,jdbcType=DECIMAL}, #{totalOver,jdbcType=DECIMAL}, 
+      #{totalOff,jdbcType=DECIMAL}, #{attendance,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.StatisticsInfo" >
+    insert into statistics_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="salesmanId != null" >
+        salesman_id,
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name,
+      </if>
+      <if test="statisticTime != null" >
+        statistic_time,
+      </if>
+      <if test="totalWork != null" >
+        total_work,
+      </if>
+      <if test="totalOver != null" >
+        total_over,
+      </if>
+      <if test="totalOff != null" >
+        total_off,
+      </if>
+      <if test="attendance != null" >
+        attendance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanId != null" >
+        #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanName != null" >
+        #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticTime != null" >
+        #{statisticTime,jdbcType=DATE},
+      </if>
+      <if test="totalWork != null" >
+        #{totalWork,jdbcType=DECIMAL},
+      </if>
+      <if test="totalOver != null" >
+        #{totalOver,jdbcType=DECIMAL},
+      </if>
+      <if test="totalOff != null" >
+        #{totalOff,jdbcType=DECIMAL},
+      </if>
+      <if test="attendance != null" >
+        #{attendance,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.StatisticsInfo" >
+    update statistics_info
+    <set >
+      <if test="salesmanId != null" >
+        salesman_id = #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticTime != null" >
+        statistic_time = #{statisticTime,jdbcType=DATE},
+      </if>
+      <if test="totalWork != null" >
+        total_work = #{totalWork,jdbcType=DECIMAL},
+      </if>
+      <if test="totalOver != null" >
+        total_over = #{totalOver,jdbcType=DECIMAL},
+      </if>
+      <if test="totalOff != null" >
+        total_off = #{totalOff,jdbcType=DECIMAL},
+      </if>
+      <if test="attendance != null" >
+        attendance = #{attendance,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.StatisticsInfo" >
+    update statistics_info
+    set salesman_id = #{salesmanId,jdbcType=INTEGER},
+      salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      statistic_time = #{statisticTime,jdbcType=DATE},
+      total_work = #{totalWork,jdbcType=DECIMAL},
+      total_over = #{totalOver,jdbcType=DECIMAL},
+      total_off = #{totalOff,jdbcType=DECIMAL},
+      attendance = #{attendance,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <insert id="insertStatisticsInfo" parameterType="com.sanxia.salesManagement.system.model.StatisticsInfo" >
+    insert into statistics_info (id, salesman_id, salesman_name, 
+      statistic_time, total_work, total_over, 
+      total_off, attendance)
+    values (#{id,jdbcType=INTEGER}, #{salesmanId,jdbcType=INTEGER}, #{salesmanName,jdbcType=VARCHAR}, 
+      #{statisticTime,jdbcType=DATE}, #{totalWork,jdbcType=DECIMAL}, #{totalOver,jdbcType=DECIMAL}, 
+      #{totalOff,jdbcType=DECIMAL}, #{attendance,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="queryStatisticsInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+   <select id="queryAllStatisticsInfo" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_info
+    </select>
+    
+    
+    <select id="queryStatisticsInfoByYear" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from statistics_info
+    where salesman_id=#{salesmanIdSearch} 
+    AND statistic_time BETWEEN #{startTimeSearch} AND #{endTimeSearch}
+  </select>
+</mapper>

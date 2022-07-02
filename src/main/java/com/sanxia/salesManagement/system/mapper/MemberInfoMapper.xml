@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanxia.salesManagement.system.dao.MemberInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sanxia.salesManagement.system.model.MemberInfo" >
+    <id column="vip_id" property="vipId" jdbcType="INTEGER" />
+    <result column="vip_name" property="vipName" jdbcType="VARCHAR" />
+    <result column="vip_tel" property="vipTel" jdbcType="VARCHAR" />
+    <result column="vip_birthday" property="vipBirthday" jdbcType="DATE" />
+    <result column="join_time" property="joinTime" jdbcType="DATE" />
+    <result column="vip_address" property="vipAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    vip_id, vip_name, vip_tel, vip_birthday, join_time, vip_address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_info
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_info
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sanxia.salesManagement.system.model.MemberInfo" >
+    insert into member_info (vip_id, vip_name, vip_tel, 
+      vip_birthday, join_time, vip_address
+      )
+    values (#{vipId,jdbcType=INTEGER}, #{vipName,jdbcType=VARCHAR}, #{vipTel,jdbcType=VARCHAR}, 
+      #{vipBirthday,jdbcType=DATE}, #{joinTime,jdbcType=DATE}, #{vipAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sanxia.salesManagement.system.model.MemberInfo" >
+    insert into member_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="vipId != null" >
+        vip_id,
+      </if>
+      <if test="vipName != null" >
+        vip_name,
+      </if>
+      <if test="vipTel != null" >
+        vip_tel,
+      </if>
+      <if test="vipBirthday != null" >
+        vip_birthday,
+      </if>
+      <if test="joinTime != null" >
+        join_time,
+      </if>
+      <if test="vipAddress != null" >
+        vip_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="vipId != null" >
+        #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="vipName != null" >
+        #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipTel != null" >
+        #{vipTel,jdbcType=VARCHAR},
+      </if>
+      <if test="vipBirthday != null" >
+        #{vipBirthday,jdbcType=DATE},
+      </if>
+      <if test="joinTime != null" >
+        #{joinTime,jdbcType=DATE},
+      </if>
+      <if test="vipAddress != null" >
+        #{vipAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sanxia.salesManagement.system.model.MemberInfo" >
+    update member_info
+    <set >
+      <if test="vipName != null" >
+        vip_name = #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipTel != null" >
+        vip_tel = #{vipTel,jdbcType=VARCHAR},
+      </if>
+      <if test="vipBirthday != null" >
+        vip_birthday = #{vipBirthday,jdbcType=DATE},
+      </if>
+      <if test="joinTime != null" >
+        join_time = #{joinTime,jdbcType=DATE},
+      </if>
+      <if test="vipAddress != null" >
+        vip_address = #{vipAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sanxia.salesManagement.system.model.MemberInfo" >
+    update member_info
+    set vip_name = #{vipName,jdbcType=VARCHAR},
+      vip_tel = #{vipTel,jdbcType=VARCHAR},
+      vip_birthday = #{vipBirthday,jdbcType=DATE},
+      join_time = #{joinTime,jdbcType=DATE},
+      vip_address = #{vipAddress,jdbcType=VARCHAR}
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- ########################################################### -->
+   <!--查询会员所有信息  -->
+     <select id="queryAllMemberInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_info
+  </select>
+  
+   <select id="queryMemberNameByMemberId" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select 
+    vip_name
+    from member_info
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </select>
+  
+   <insert id="addMemberByMember" parameterType="com.sanxia.salesManagement.system.model.MemberInfo" >
+    insert into member_info (vip_id, vip_name, vip_tel, 
+      vip_birthday, join_time, vip_address
+      )
+    values (#{vipId,jdbcType=INTEGER}, #{vipName,jdbcType=VARCHAR}, #{vipTel,jdbcType=VARCHAR}, 
+      #{vipBirthday,jdbcType=DATE}, #{joinTime,jdbcType=DATE}, #{vipAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <select id="selectMemberInfoByMemberId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_info
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectMemberInfoByMemberName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_info
+    where  vip_name like #{vipName,jdbcType=VARCHAR}
+  </select>
+</mapper>
